@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+  completions: 4 #one after another 
+  parallelism: 2 # two pod can run in parallel
+  template: #template will be use for creating pod
+    spec:
+      containers:
+         - name: busybox #name of the container 
+           image: busybox
+           command: ["echo","k8s"]  
+      restartPolicy: Never
+
+#scaling job
+# kubectl scale job hello-world --replicas 3

@@ -1,0 +1,19 @@
+# How long should the Job wait for a pod
+# to finish? What if the pod gets stuck and can’t finish at all (or it can’t finish fast
+# enough)?
+# A pod’s time can be limited by setting the activeDeadlineSeconds property in the
+# pod spec. If the pod runs longer than that, the system will try to terminate it and will
+# mark the Job as failed.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+  activeDeadlineSeconds: 10 #if this job take more than sec then terminate the pods 
+  template: #template will be use for creating pod
+    spec:
+      containers:
+         - name: busybox #name of the container 
+           image: busybox
+           command: ["sleep","20"]  
+      restartPolicy: Never

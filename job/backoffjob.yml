@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+  backoffLimit: 2
+  template: #template will be use for creating pod
+    spec:
+      containers:
+         - name: busybox #name of the container 
+           image: busybox  #image is being used from docker 
+           command: ["ls","/knoldus"]  #making failed my container as there is no folder KNOLDUS in my container
+      restartPolicy: Never

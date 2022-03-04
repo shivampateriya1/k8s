@@ -1,0 +1,16 @@
+#In completion 
+#job we create one after one  and it will do so on 
+#In my example has written completions: 2  that means it will create 2 pod on after another
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+  completions: 2 #one after another 
+  template: #template will be use for creating pod
+    spec:
+      containers:
+         - name: busybox #name of the container 
+           image: busybox
+           command: ["echo","k8s"]  
+      restartPolicy: Never
