@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firstdeploy #this is for deployment name 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node1  
+  template:
+    metadata:
+      labels:
+        app: node1
+    spec:
+      containers:
+        - image: shivampateriyaknoldus/node-js:0.0.1.RELEASE
+          name: node-js-hello #name of the container
+
+

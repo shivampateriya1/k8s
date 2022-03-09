@@ -16,4 +16,3 @@ spec:
                    image: shivampateriyaknoldus/node-js:0.0.1.RELEASE
                    ports:
                      - containerPort: 80
-
