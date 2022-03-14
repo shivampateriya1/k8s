@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortune
+spec:
+  containers:
+    - image: shivampateriyaknoldus/fortune:latest
+      name: html-generator
+      volumeMounts:
+        - name: html
+          mountPath: /var/htdocs   #the volume called html is mounted at /var/htdocs in the container
+
+    - image: nginx:alpine 
+      name: web-server
+      volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html   #same volume as above is mounted at /usr/share/nginx/hmtl as readonly
+          readOnly: true
+      ports:
+        - containerPort: 80
+          protocol: TCP
+  volumes:
+  - name: html     
+    emptyDir: {}        
+
+
+# if we wish to check where is it mounted u can go that node where this pod is running 
+# then /var/lib/kubelet/pods/{podid}/volumes/kubernetes.io~empty-dir/ 
+# to see this mount in container 
+#_-------------------------
+# use this command 
+#  kubectl exec -it fortune -- bash   and then cd into cd /var/htdocs
