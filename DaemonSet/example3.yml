@@ -1,0 +1,24 @@
+#firstly we need to label our pods 
+# kubectl get node --show-labels
+#kubectl label node [node-name] [key=value ] 
+# for example kubectl label node minikube disk=ssd
+
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ssd-monitor
+spec:
+  selector:
+    matchLabels:
+      app: ssd-monitor        
+  template:
+    metadata:
+      labels:
+        app: ssd-monitor
+    spec:
+      nodeSelector:       
+        disk: ssd
+      containers:
+      - name: main
+        image: luksa/ssd-monitor

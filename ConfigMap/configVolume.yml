@@ -1,0 +1,27 @@
+#using config map as a volume 
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  volumes:
+  - name: demo
+    configMap:
+      name: first-config
+  containers:
+  - image: busybox
+    name: busybox
+    command: ["/bin/sh"]
+    args: ["-c", "sleep 600"]
+    volumeMounts:
+    - name: demo
+      mountPath: /mydata      
+
+#lets apply changes and see are we able to update file
+#kubectl edit cm first-config
+#then exec in pod  kubectl exec -it busybox sh
+
+
+#shivam_pateriya      

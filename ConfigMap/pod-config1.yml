@@ -1,0 +1,34 @@
+#passing env variable in the container
+#for the testing use the below commands
+#kubectl exec -it busybox sh
+#then echo $EMPID 
+#echo $EMPNAME
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command: ["/bin/sh"]
+    args: ["-c","sleep 600"]
+    env:
+        - name: EMPNAME
+          valueFrom:
+            configMapKeyRef:
+              name: first-config
+              key: empname
+        
+        - name: EMPID
+          valueFrom:
+            configMapKeyRef:
+              name: first-config
+              key: empid
+
+
+
+#SHIVAM_PATERIYA
+              

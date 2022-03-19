@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: first-config
+data:
+  empname: "shivam"
+  empid: "1746"

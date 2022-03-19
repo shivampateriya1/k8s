@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2
+spec:
+  containers:
+    - name: node
+      image: shivampateriyaknoldus/node-js:0.0.1.RELEASE
+  tolerations:
+    - key: node1
+      operator: Equal
+      value: web
+      effect: NoSchedule
+
+
+# kubectl taint node gke-shivamk8s-default-pool-92f75cd1-4p7b node1=web:NoSchedule
+

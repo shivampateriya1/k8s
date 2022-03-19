@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod3
+spec:
+  containers:
+    - name: node
+      image: shivampateriyaknoldus/node-js:0.0.1.RELEASE
+
+#set taint to the node 
+# and check it will schedule on that node or not .
+

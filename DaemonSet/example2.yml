@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ssd-monitor
+spec:
+  selector:
+    matchLabels:
+      app: ssd-monitor        
+  template:
+    metadata:
+      labels:
+        app: ssd-monitor
+    spec:
+      nodeSelector:       
+        disk: ssd
+      containers:
+      - name: main
+        image: luksa/ssd-monitor
+
+#After applying this file it will create daemon set but there will be no pod 
+#because we have to label our node 
+
+#go to example 3

@@ -3,5 +3,3 @@ kind: StorageClass
 metadata:
   name: fast
 provisioner: k8s.io/minikube-hostpath
-parameters:
-  type: pd-ssd
